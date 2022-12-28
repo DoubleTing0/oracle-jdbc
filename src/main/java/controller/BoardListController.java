@@ -20,6 +20,8 @@ public class BoardListController extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		// 인코딩 : UTF-8
+		request.setCharacterEncoding("UTF-8");
 		
 		String searchText = "";
 		if(request.getParameter("searchText") != null) {
@@ -43,7 +45,7 @@ public class BoardListController extends HttpServlet {
 		System.out.println(list.size() + " <-- list.size()");
 		
 		// 페이징 처리
-		ArrayList<HashMap<String, Object>> pageList = this.boardService.pageBoard(searchText, currentPage, rowPerPage); 
+		ArrayList<HashMap<String, Object>> pageList = this.boardService.getPageBoard(searchText, currentPage, rowPerPage); 
 		
 		for(HashMap<String, Object> hm : pageList) {
 			
@@ -60,7 +62,7 @@ public class BoardListController extends HttpServlet {
 		request.setAttribute("currentPage", currentPage);	// view에서 필요
 		request.setAttribute("rowPerPage", rowPerPage);		// view에서 필요
 		
-		request.getRequestDispatcher("/WEB-INF/view/boardList.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/view/board/boardList.jsp").forward(request, response);
 		
 		
 		

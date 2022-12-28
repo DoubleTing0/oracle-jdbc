@@ -9,7 +9,9 @@ import vo.Board;
 
 public class BoardDao {
 
-	// 검색 추가해야함
+	// 검색 기능 포함
+	// 게시판 전체 출력
+	// boardList.jsp , BoardListController.java
 	public ArrayList<Board> selectBoardListByPage(Connection conn, String searchText, int beginRow, int endRow) throws Exception {
 		
 		ArrayList<Board> list = new ArrayList<Board>();
@@ -66,6 +68,8 @@ public class BoardDao {
 		
 	}
 	
+	// 검색 후 게시글 총 카운트
+	// boardList.jsp , BoardService.java -> pageBoard()
 	public int countBoard(Connection conn, String searchText) throws Exception {
 		
 		int resultCount = 0;
@@ -91,6 +95,42 @@ public class BoardDao {
 	}
 	
 	
+	// 게시글 한개 상세보기
+	// boardOne.jsp , BoardOneController.java
+	public Board selectBoardOne(Connection conn, int boardNo) throws Exception {
+		
+		Board resultBoard = null;
+		
+		String sql = "SELECT board_no boardNo"
+				+ "			, board_title boardTitle"
+				+ "			, board_content boardContent"
+				+ "			, member_id memberId"
+				+ "			, updatedate"
+				+ "			, createdate"
+				+ "	 FROM board"
+				+ "	 WHERE board_no = ?";
+		
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		
+		stmt.setInt(1, boardNo);
+		
+		ResultSet rs = stmt.executeQuery();
+		
+		if(rs.next()) {
+			resultBoard = new Board();
+			resultBoard.setBoardNo(rs.getInt("boardNo"));
+			resultBoard.setBoardTitle(rs.getString("boardTitle"));
+			resultBoard.setBoardContent(rs.getString("boardContent"));
+			resultBoard.setMemberId(rs.getString("memberId"));
+			resultBoard.setUpdatedate(rs.getString("updatedate"));
+			resultBoard.setCreatedate(rs.getString("createdate"));
+			
+		}
+		
+		
+		return resultBoard;
+		
+	}
 	
 	
 	

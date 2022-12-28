@@ -13,7 +13,8 @@ public class BoardService {
 
 	private BoardDao boardDao;
 	
-	public ArrayList<HashMap<String, Object>> pageBoard(String searchText, int currentPage, int rowPerPage) {
+	// BoardList 페이징 처리
+	public ArrayList<HashMap<String, Object>> getPageBoard(String searchText, int currentPage, int rowPerPage) {
 		
 		ArrayList<HashMap<String, Object>> list = null;
 		
@@ -61,6 +62,7 @@ public class BoardService {
 		
 	}
 	
+	// BoardList 출력
 	public ArrayList<Board> getBoardListByPage(String searchText, int currentPage, int rowPerPage) {
 		
 		ArrayList<Board> list = null;
@@ -111,6 +113,51 @@ public class BoardService {
 		return list;
 		
 	}
+	
+	
+	// BoardOne 출력
+	public Board getBoardOne(int boardNo) {
+		
+		Board resultBoard = null;
+		
+		Connection conn = null;
+		
+		try {
+			
+			conn = DBUtil.getConnection();
+			this.boardDao = new BoardDao();
+			
+			resultBoard = this.boardDao.selectBoardOne(conn, boardNo);
+			
+			conn.commit();
+		} catch (Exception e) {
+			
+			try {
+				conn.rollback();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+			
+			e.printStackTrace();
+			
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+
+		
+		
+		return resultBoard;
+		
+	}
+	
+	
+	
+	
+	
 	
 	
 	
