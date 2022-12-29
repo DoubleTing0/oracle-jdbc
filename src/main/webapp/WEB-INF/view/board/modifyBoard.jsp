@@ -15,7 +15,7 @@
 			</div>
 			
 			<div>
-				<form action = "${pageContext.request.contextPath }/ModifyBoardController" method = "post">
+				<form action = "${pageContext.request.contextPath }/board/modifyBoard" method = "post">
 					<div>
 						<table>
 							<!-- boardNo -->

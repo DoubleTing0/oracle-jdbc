@@ -127,4 +127,111 @@ public class MemberService {
 		
 	}
 	
+	// 회원 삭제
+	// 추후에 비밀번호 확인 후 삭제
+	public int removeMember(Member member) {
+		
+		int resultRow = 0;
+		
+		Connection conn = null;
+		
+		try {
+			
+			conn = DBUtil.getConnection();
+			this.memberDao = new MemberDao();
+			
+			resultRow = this.memberDao.removeMember(conn, member);
+			
+			conn.commit();
+		} catch (Exception e) {
+			
+			try {
+				conn.rollback();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+			
+			e.printStackTrace();
+			
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		
+		return resultRow;
+		
+		
+	}
+	
+	
+	// 비밀번호 확인
+	// 추후에 사용하는 곳 적기
+	public boolean checkPassword(Member member) {
+		
+		boolean result = false;
+		
+		Connection conn = null;
+		
+		try {
+			
+			conn = DBUtil.getConnection();
+			
+			this.memberDao = new MemberDao();
+			result = this.memberDao.checkPassword(conn, member);
+			
+			// SELECT라 commit X
+			
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+			
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		
+		return result;
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

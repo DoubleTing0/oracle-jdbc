@@ -14,7 +14,7 @@ public class BoardService {
 	private BoardDao boardDao;
 	
 	// BoardList 페이징 처리
-	public ArrayList<HashMap<String, Object>> getPageBoard(String searchText, int currentPage, int rowPerPage) {
+	public ArrayList<HashMap<String, Object>> getPageBoard(String searchCategory, String searchText, int currentPage, int rowPerPage) {
 		
 		ArrayList<HashMap<String, Object>> list = null;
 		
@@ -28,7 +28,7 @@ public class BoardService {
 			
 			// 페이지 처리
 			int pageLength = 10;
-			int count = this.boardDao.countBoard(conn, searchText);
+			int count = this.boardDao.countBoard(conn, searchCategory, searchText);
 			
 			int previousPage = Page.getPreviousPage(currentPage, pageLength);
 			int nextPage = Page.getNextPage(currentPage, pageLength);
@@ -63,7 +63,7 @@ public class BoardService {
 	}
 	
 	// BoardList 출력
-	public ArrayList<Board> getBoardListByPage(String searchText, int currentPage, int rowPerPage) {
+	public ArrayList<Board> getBoardListByPage(String searchCategory, String searchText, int currentPage, int rowPerPage) {
 		
 		ArrayList<Board> list = null;
 		
@@ -87,7 +87,7 @@ public class BoardService {
 			System.out.println(endRow + " <-- endRow");
 			
 			this.boardDao = new BoardDao();
-			list = this.boardDao.selectBoardListByPage(conn, searchText, beginRow, endRow);
+			list = this.boardDao.selectBoardListByPage(conn, searchCategory, searchText, beginRow, endRow);
 			
 			conn.commit();
 		} catch (Exception e) {
@@ -107,8 +107,6 @@ public class BoardService {
 				e.printStackTrace();
 			}
 		}
-
-		
 		
 		return list;
 		
@@ -149,16 +147,123 @@ public class BoardService {
 		}
 
 		
-		
 		return resultBoard;
 		
 	}
 	
 	
+	// 게시글 입력하기
+	public int addBoard(Board board) {
+		
+		int resultRow = 0;
+		
+		Connection conn = null;
+		
+		try {
+			
+			conn = DBUtil.getConnection();
+			this.boardDao = new BoardDao();
+			
+			resultRow = this.boardDao.addBoard(conn, board);
+			
+			conn.commit();
+		} catch (Exception e) {
+			
+			try {
+				conn.rollback();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+			
+			e.printStackTrace();
+			
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return resultRow;
+		
+	}
+	
+	// 게시글 수정하기
+	public int modifyBoard(Board board) {
+		
+		int resultRow = 0;
+		
+		Connection conn = null;
+		
+		try {
+			
+			conn = DBUtil.getConnection();
+			this.boardDao = new BoardDao();
+			
+			resultRow = this.boardDao.modifyBoard(conn, board);
+			
+			conn.commit();
+		} catch (Exception e) {
+			
+			try {
+				conn.rollback();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+			
+			e.printStackTrace();
+			
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return resultRow;
+		
+	}
 	
 	
-	
-	
+	// 게시글 삭제하기
+	public int removeBoard(Board board) {
+		
+		int resultRow = 0;
+		
+		Connection conn = null;
+		
+		try {
+			
+			conn = DBUtil.getConnection();
+			this.boardDao = new BoardDao();
+			
+			resultRow = this.boardDao.removeBoard(conn, board);
+			
+			conn.commit();
+		} catch (Exception e) {
+			
+			try {
+				conn.rollback();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+			
+			e.printStackTrace();
+			
+		} finally {
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return resultRow;
+		
+	}
+
 	
 	
 	

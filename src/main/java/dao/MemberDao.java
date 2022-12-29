@@ -105,6 +105,75 @@ public class MemberDao {
 	}
 	
 	
+	// 회원 삭제
+	// 추후에 비밀번호 확인 후 삭제
+	public int removeMember(Connection conn, Member member) throws Exception {
+		
+		int resultRow = 0;
+		
+		String sql = "DELETE member"
+				+ "	 WHERE member_id = ?";
+		
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		
+		stmt.setString(1, member.getMemberId());
+		
+		resultRow = stmt.executeUpdate();
+		
+		if(resultRow == 1) {
+			System.out.println("회원 탈퇴 성공!");
+		} else {
+			System.out.println("회원 탈퇴 실패!");
+		}
+		
+		return resultRow;
+		
+	}
+	
+	
+	// 비밀번호 확인
+	// 추후에 사용하는 곳 적기
+	public boolean checkPassword(Connection conn, Member member) throws Exception {
+		
+		boolean result = false;
+		
+		String sql = "SELECT member_id"
+				+ "	 FROM member"
+				+ "	 WHERE member_id = ?"
+				+ "		 AND member_pw = ?";
+		
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		
+		stmt.setString(1, member.getMemberId());
+		stmt.setString(2, member.getMemberPw());
+		
+		ResultSet rs = stmt.executeQuery();
+		
+		if(rs.next()) {
+			result = true;
+		}
+		
+		return result;
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	

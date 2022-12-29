@@ -22,8 +22,10 @@
 						<th>memberId</th>
 						<th>updatedate</th>
 						<th>createdate</th>
-						<th>수정</th>
-						<th>삭제</th>
+						<c:if test="${loginMember.memberId == board.memberId }">
+							<th>수정</th>
+							<th>삭제</th>
+						</c:if>
 					</tr>
 					
 					<tr>
@@ -33,12 +35,14 @@
 						<td>${board.memberId }</td>
 						<td>${board.updatedate }</td>
 						<td>${board.createdate }</td>
-						<td>
-							<a href = "${pageContext.request.contextPath }/ModifyBoardController?boardNo=${board.boardNo }">수정</a>
-						</td>
-						<td>
-							<a href = "${pageContext.request.contextPath }/RemoveBoardController?boardNo=${board.boardNo }">삭제</a>
-						</td>
+						<c:if test="${loginMember.memberId == board.memberId }">
+							<td>
+								<a href = "${pageContext.request.contextPath }/member/checkPassword?targetUrl=/board/modifyBoard?boardNo=${board.boardNo }">수정</a>
+							</td>
+							<td>
+								<a href = "${pageContext.request.contextPath }/member/checkPassword?targetUrl=/board/removeBoard?boardNo=${board.boardNo }">삭제</a>
+							</td>
+						</c:if>
 					</tr>
 							
 				

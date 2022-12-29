@@ -15,10 +15,10 @@
 		
 		
 			<div>
-				<a href = "${pageContext.request.contextPath }/member/modifyMember">1) 회원정보수정</a>
+				<a href = "${pageContext.request.contextPath }/member/checkPassword?targetUrl=/member/modifyMember">1) 회원정보수정</a>
 			</div>
 			<div>
-				<a href = "${pageContext.request.contextPath }/member/removeMember">2) 회원탈퇴</a>
+				<a href = "${pageContext.request.contextPath }/member/checkPassword?targetUrl=/member/removeMember">2) 회원탈퇴</a>
 			</div>
 			
 			<div>
