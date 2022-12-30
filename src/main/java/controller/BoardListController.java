@@ -37,6 +37,8 @@ public class BoardListController extends HttpServlet {
 			
 		}
 		
+		session.setAttribute("pageName", "board");
+		
 		// 인코딩 : UTF-8
 		request.setCharacterEncoding("UTF-8");
 		

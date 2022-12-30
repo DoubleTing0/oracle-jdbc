@@ -91,7 +91,7 @@ public class ModifyMemberController extends HttpServlet {
 			// 수정 성공하면
 			
 			session.setAttribute("loginMember", member);
-			targetUrl = "/member/memberOne";
+			targetUrl = "/home";
 			
 		}
 		

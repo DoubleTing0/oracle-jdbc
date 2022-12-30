@@ -20,7 +20,7 @@
       content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
     />
 
-    <title>Sign Up</title>
+    <title>회원 가입</title>
 
     <meta name="description" content="" />
 
@@ -68,7 +68,7 @@
             <div class="card-body">
               <!-- Logo -->
               <div class="app-brand justify-content-center">
-                <a href="index.html" class="app-brand-link gap-2">
+                <a href="${pageContext.request.contextPath }/home" class="app-brand-link gap-2">
                   <span class="app-brand-logo demo">
                     <svg
                       width="25"
@@ -124,60 +124,56 @@
                       </g>
                     </svg>
                   </span>
-                  <span class="app-brand-text demo text-body fw-bolder">Sign Up</span>
+                  <span class="app-brand-text demo text-body fw-bolder">Oracle-Board</span>
                 </a>
               </div>
               <!-- /Logo -->
-              <h4 class="mb-2">Adventure starts here 🚀</h4>
-              <p class="mb-4">Make your app management easy and fun!</p>
+              <p class="mb-2">&nbsp;</p>
 
-              <form id="formAuthentication" class="mb-3" action="index.html" method="POST">
+              <form id="formAuthentication" class="mb-3" action="${pageContext.request.contextPath }/member/addMember" method="POST">
                 <div class="mb-3">
-                  <label for="username" class="form-label">Username</label>
+                  <label for="memberId" class="form-label">ID</label>
                   <input
                     type="text"
                     class="form-control"
-                    id="username"
-                    name="username"
-                    placeholder="Enter your username"
+                    id="memberId"
+                    name="memberId"
+                    placeholder="Enter your ID"
                     autofocus
                   />
                 </div>
                 <div class="mb-3">
-                  <label for="email" class="form-label">Email</label>
-                  <input type="text" class="form-control" id="email" name="email" placeholder="Enter your email" />
+                  <label for="memberName" class="form-label">Name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="memberName"
+                    name="memberName"
+                    placeholder="Enter your Name"
+                  />
                 </div>
                 <div class="mb-3 form-password-toggle">
                   <label class="form-label" for="password">Password</label>
                   <div class="input-group input-group-merge">
                     <input
                       type="password"
-                      id="password"
+                      id="memberPw"
                       class="form-control"
-                      name="password"
+                      name="memberPw"
                       placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
                       aria-describedby="password"
                     />
                     <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
                   </div>
                 </div>
-
-                <div class="mb-3">
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="terms-conditions" name="terms" />
-                    <label class="form-check-label" for="terms-conditions">
-                      I agree to
-                      <a href="javascript:void(0);">privacy policy & terms</a>
-                    </label>
-                  </div>
-                </div>
-                <button class="btn btn-primary d-grid w-100">Sign up</button>
+                
+                <button class="btn btn-primary d-grid w-100">회원 가입</button>
               </form>
 
               <p class="text-center">
-                <span>Already have an account?</span>
-                <a href="auth-login-basic.html">
-                  <span>Sign in instead</span>
+                <span>이미 회원이신가요?</span>
+                <a href="${pageContext.request.contextPath }/member/login">
+                  <span>&emsp; 로그인</span>
                 </a>
               </p>
             </div>
@@ -189,14 +185,6 @@
 
     <!-- / Content -->
 
-    <div class="buy-now">
-      <a
-        href="https://themeselection.com/products/sneat-bootstrap-html-admin-template/"
-        target="_blank"
-        class="btn btn-danger btn-buy-now"
-        >Upgrade to Pro</a
-      >
-    </div>
 
     <!-- Core JS -->
     <!-- build:js assets/vendor/js/core.js -->
