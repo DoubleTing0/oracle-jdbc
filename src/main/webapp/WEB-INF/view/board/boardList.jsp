@@ -103,14 +103,17 @@
 		                <div class="col-lg-12 mb-4 order-0">
 		                  <div class="card">
 		                    <div class="d-flex align-items-start row">
-		                      <div class="col-sm-7">
+		                      <div class="col-sm-12">
 		                        <div class="card-body">
-									<div>
+									<div class = "text-center">
 										<h1><span class="fw-bold">게시판</span></h1>
 									</div>
-								
+									<div class = "row">
+										<div class = "col-lg-11 col-sm-10">
+										</div>
+										<div class = "col-lg-1 col-sm-2 align-items-end">
 										<form method = "get" id = "pageForm" action = "${pageContext.request.contextPath }/board/boardList">
-											<select name = "rowPerPage" id = "rowPerPage">
+											<select name = "rowPerPage" id = "rowPerPage" class = "form-select form-select-sm">
 												<c:if test="${rowPerPage == 10 }">
 													<option value = "10" selected = "selected">10개씩</option>
 													<option value = "20">20개씩</option>
@@ -127,8 +130,9 @@
 													<option value = "30" selected = "selected">30개씩</option>
 												</c:if>
 											</select>
-											
 										</form>
+										</div>
+									</div>
 									
 									<div>&nbsp;</div>
 									
@@ -264,17 +268,6 @@
 		                        
 		                        
 		                        
-		                        </div>
-		                      </div>
-		                      <div class="col-sm-5 text-center text-sm-left">
-		                        <div class="card-body pb-0 px-0 px-md-4">
-		                          <img
-		                            src="${pageContext.request.contextPath}/resources/assets/img/illustrations/man-with-laptop-light.png"
-		                            height="400"
-		                            alt="View Badge User"
-		                            data-app-dark-img="illustrations/man-with-laptop-dark.png"
-		                            data-app-light-img="illustrations/man-with-laptop-light.png"
-		                          />
 		                        </div>
 		                      </div>
 		                    </div>
